@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        <%= title %>
+    </title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <link href="assets/css/jquery.modal.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <form class="form-forgot" action="/forgot" method="post">
+        <h2 class="form-signin-heading text-center">Forgot your password? no problem!</h2>
+
+        <label for="username" class="sr-only">Email</label>
+        <input type="text" name="email" id="username" class="form-control" placeholder="Email" required autofocus>
+
+        <button id="subBtn" class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
+
+    </form>
+    <i style="display:none" class="reg-loader fa fa-spinner fa-pulse fa-2x"></i>
+
+    <div class="row">
+        <div class="center-block text-center">
+        </div>
+    </div>
+</div>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/retina-1.1.0.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+<script type="text/javascript" src="assets/js/jquery.modal.js"></script>
+<script>
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        $('#subBtn').prop('disabled', true);
+        $('.reg-loader').css('display', 'inline-block');
+        if (!validateEmail($('#username').val())) {
+            modal({
+                type: 'error',
+                title: 'Houston, We have a problem',
+                text: "This is not a valid Email address!",
+                animate: true
+            });
+            $('.reg-loader').css('display', 'none');
+            $('#subBtn').prop('disabled', false);
+        } else {
+            var formData = $(this).serializeObject();
+            console.log(formData)
+            $.ajax({
+                type: "POST",
+                cache: false,
+                contentType: "application/json",
+                url: $(this).attr('action'),
+                data: JSON.stringify(formData),
+                success: function (data) {
+                    if (data === "ok") {
+                        modal({
+                            type: 'success',
+                            title: 'Success',
+                            text: "Check your email, you should get instructions on how to reset your password.",
+                            animate: true
+                        });
+                    } else if (data === "NOUSER") {
+                        modal({
+                            type: 'error',
+                            title: 'Houston, We have a problem',
+                            text: "A user with this email does not exists.\nfor help please contact <%=suppemail%>",
+                            animate: true
+                        });
+                    } else {
+                        modal({
+                            type: 'error',
+                            title: 'Houston, We have a problem',
+                            text: "We have a problem. Please try again or contact <%=suppemail%>",
+                            animate: true
+                        });
+                    }
+                    $('#subBtn').prop('disabled', false);
+                },
+                error: function (data) {
+                    if (data.status == 409) {
+                        modal({
+                            type: 'error',
+                            title: 'Houston, We have a problem',
+                            text: "A user with this email already exists.\nThere is no need to register twice.\nfor help please contact <%=suppemail%>",
+                            animate: true
+                        });
+                        $('.reg-loader').css('display', 'none');
+                        $('#subBtn').prop('disabled', false);
+                    }
+                    else {
+                        modal({
+                            type: 'error',
+                            title: 'Houston, We have a problem',
+                            text: "We have a problem. Please try again or contact <%=suppemail%>",
+                            animate: true
+                        });
+                        $('.reg-loader').css('display', 'none');
+                        $('#subBtn').prop('disabled', false);
+                    }
+                }
+            });
+        }
+
+    });
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+</script>
+</body>
+</html>

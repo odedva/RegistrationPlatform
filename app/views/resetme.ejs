@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        <%= title %>
+    </title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <link href="/assets/css/jquery.modal.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+<div class="container">
+    <% if (msg === "error") { %>
+    <h1>Well, something went wrong here...</h1>
+
+    <h2>Please try again or contact <%= suppemail %> for further assitance</h2>
+    <% } %>
+
+    <% if (msg === "nouser") { %>
+    <h1>Well, you are doing something wrong here...</h1>
+
+    <h2>Are you sure that this is the right link? Please try again or contact <%= suppemail %> for further
+        assitance</h2>
+    <% } %>
+
+    <% if (msg === "wrongid") { %>
+    <h1>Well, you are doing something wrong here...</h1>
+
+    <h2>Are you sure that this is the right link? Please try again or contact <%= suppemail %> for further
+        assitance</h2>
+    <% } %>
+    <% if (msg === "ok" && user){ %>
+
+    <% if (user.email !== "" && user.resetPass !== ""){ %>
+
+    <h2 class="form-signin-heading text-center">password resetter. </h2>
+    <input type="hidden" name="resetPass" id="reserPass" value="<%= user.resetPass %>"/>
+    <label for="username" class="sr-only">Email</label>
+    <input type="text" name="username" id="username" class="form-control" placeholder="Email" required autofocus>
+
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="New Password">
+    <input type="password" name="password_ver" id="password_ver" class="form-control" placeholder="Retype New Password">
+
+    <button class="btn btn-lg btn-primary btn-block" id="resetPass">Reset password</button>
+    <% } else { %>
+    <h1>Well, you are doing something wrong here...</h1>
+
+    <h2>Are you sure that this is the right link? Please try again or contact <%= suppemail %> for further
+        assitance</h2>
+    <% } %>
+    <% } %>
+</div>
+
+
+</div>
+<script src="/assets/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.modal.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#resetPass').on('click', function () {
+            $('#resetPass').prop('disabled', true)
+            if ($('#username').val() === "") {
+                modal({
+                    type: 'error',
+                    title: 'Houston, We have a problem',
+                    text: "Please insert an email",
+                    animate: true
+                });
+                $('#resetPass').prop('disabled', false)
+            }
+            else if ($('#password').val() === "") {
+                modal({
+                    type: 'error',
+                    title: 'Houston, We have a problem',
+                    text: "Please insert a new password",
+                    animate: true
+                });
+                $('#resetPass').prop('disabled', false)
+            } else if ($('#password').val() !== $('#password_ver').val()) {
+                modal({
+                    type: 'error',
+                    title: 'Houston, We have a problem',
+                    text: "Password do not match",
+                    animate: true
+                });
+                $('#resetPass').prop('disabled', false)
+            } else {
+                $.ajax({
+                    data: {
+                        "password": $('#password').val(),
+                        "email": $('#username').val(),
+                        "resetPass": $('#reserPass').val()
+                    },
+                    type: "PUT",
+                    url: "/resetme",
+                    success: function (data) {
+                        if (data === "ok") {
+                            modal({
+                                type: 'success',
+                                title: 'Win!',
+                                text: "You just reset your password, close me to login with your new password.",
+                                animate: true,
+                                callback: function () {
+                                    window.location.replace("/login");
+                                }
+                            });
+                            $('#resetPass').prop('disabled', false);
+                            $('#lastResetText').html("password was reset for " + $('#username').val() + ". new password is:" + $('#password').val());
+                            $('#lastReset').css('display', 'block');
+                        } else {
+                            var eText = "";
+                            if (data === undefined || data !== "error") {
+                                eText = "Something is wrong here. Are you sure it's your email? Please try again or contact <%=suppemail%>";
+                            } else {
+                                eText = "We have an internal error. Please try again or contact <%=suppemail%>";
+                            }
+                            modal({
+                                type: 'error',
+                                title: 'Houston, We have a problem',
+                                text: eText,
+                                animate: true
+                            });
+                            $('#resetPass').prop('disabled', false)
+                        }
+                    },
+                    error: function (err) {
+                        alert("not goot");
+                        console.log(err)
+                        $('#resetPass').prop('disabled', false)
+                    }
+                })
+            }
+        })
+    })
+</script>
+</body>
+</html>

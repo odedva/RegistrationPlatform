@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<% if (maxusers) { %>
+<script>
+    var maxMembers = parseInt(<%= maxusers %>) - 1;
+</script>
+<% }else{ %>
+<script>
+    var maxMembers = 5;
+</script>
+<% } %>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= eventname %> Registration</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+
+    <link rel="stylesheet" href="assets/css/jquery.qtip.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/CreativeButtons/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/CreativeButtons/css/component.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/css/jquery.modal.css" type="text/css" rel="stylesheet"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="assets/CreativeButtons/js/modernizr.custom.js"></script>
+
+
+    <![endif]-->
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+<body>
+
+<!-- Top menu -->
+<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/"><img class="logo-hack" src="/assets/img/mini-logo.png" alt=""/></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <% if (user) { %>
+                    <a href="/logout">Logout</a>
+                    <% } else { %>
+                    <a href="/register">Register</a>
+                    <a href="/login">Login</a>
+                    <% } %>
+                </li>
+                <li>
+                            <span class="li-social">
+							<a href="/team-up"><i class="fa fa-home"></i></a>
+                            </span>
+                </li>
+                <li>
+                            <span class="li-social">
+								<a href="<%= eventfacebook %>"><i class="fa fa-facebook"></i></a>
+
+							</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Top content -->
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+            <!-- logged in user-->
+            <% if ( user ) { %>
+            <div class="row">
+                <div class="col-sm-12 text">
+                    <h1><strong><%= eventname %></strong> Team Creation Form</h1>
+
+                    <div class="description">
+                        <p>
+                            Please fill the following form with all the information.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>Create Team now</h3>
+
+                            <p>Fill in the form below, please read the information sign before adding members to your
+                                team.</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form id="form-team-create" role="form" action="/teams" method="post" class="registration-form">
+                            <input type="hidden" name="admin_email" value="<%= user.email %>"/>
+
+                            <div class="row">
+                                <div class=" col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-team-name">Team name</label>
+                                        <input type="text" name="team_name" placeholder="Your Team name...."
+                                               class="form-team-name form-control" id="form-first-name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-idea">Idea</label>
+                                        <textarea name="idea"
+                                                  placeholder="Please describe briefly your idea for the hackathon - leave blank if not decided yet"
+                                                  class="form-idea form-control" id="form-idea"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-team-isClosed">Are you looking for more team members?</label>
+
+                                        <select style="width: 100%" name="isClosed" class="form-team-isClosed"
+                                                id="isClosed">
+                                            <option value=false>Yes</option>
+                                            <option value=true>No</option>
+                                        </select>
+
+                                        <p style="display: block;" id="moreMembersInfo">
+                                            <b>*</b> You have opened the option for matching other members to join your
+                                            team.
+                                            Matching requests will be sent to your email.
+                                            Make sure you manually add their email in the <%= eventname %> platform.</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div id="wrap-lookingText" class="form-group">
+                                        <label for="form-lookingText">What are you looking for?</label>
+                                        <textarea required name="lookingText"
+                                                  placeholder="Please describe what kind of members you are looking for to join your team, e.g. Designers, Programmers and etc."
+                                                  class="form-lookingText form-control"
+                                                  id="form-lookingText"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div id="members_list" class="form-group members-list">
+                                        <label for="form-team-name"><span id="information"
+                                                                          data-tooltip="In order to add a member, insert the member's email as used to register to the hackathon. You don't need to insert your own email. You can add up to <%= maxusers - 1 %> members to your team though you can also start with an empty team and add members later."
+                                                                          class="form-pass-info glyphicon glyphicon-info-sign"
+                                                                          data-hasqtip="128"
+                                                                          aria-describedby="qtip-128"></span> Members <i
+                                                    id="add_mem" class="fa fa-user-plus fa-2x"><label
+                                                        class="add-mem-label">Add members</label></i></label>
+                                        <input type="text" name="mem0"
+                                               placeholder="Member's Email (used to register to the hackathon)"
+                                               class="form-member-name form-control" id="form-members-0">
+                                        <i id="mem_rem_0" class="fa fa-user-times fa-2x"></i><i
+                                                class="mem-loader0 fa fa-spinner fa-pulse fa-2x"></i><i
+                                                class="mem-check0 fa fa-check fa-2x"></i><i
+                                                class="mem-warn0 fa fa-exclamation fa-2x"></i>
+                                        <span class="warn-text0" style="display: block;"></span>
+                                        <input type="text" name="mem1"
+                                               placeholder="Member's Email (used to register to the hackathon)"
+                                               class="form-member-name form-control" id="form-members-1">
+                                        <i id="mem_rem_1" class="fa fa-user-times fa-2x"></i><i
+                                                class="mem-loader1 fa fa-spinner fa-pulse fa-2x"></i><i
+                                                class="mem-check1 fa fa-check fa-2x"></i><i
+                                                class="mem-warn1 fa fa-exclamation fa-2x"></i>
+                                        <span class="warn-text1" style="display: block;"></span>
+                                        <input type="text" name="mem2"
+                                               placeholder="Member's Email (used to register to the hackathon)"
+                                               class="form-member-name form-control" id="form-members-2">
+                                        <i id="mem_rem_2" class="fa fa-user-times fa-2x"></i><i
+                                                class="mem-loader2 fa fa-spinner fa-pulse fa-2x"></i><i
+                                                class="mem-check2 fa fa-check fa-2x"></i><i
+                                                class="mem-warn2 fa fa-exclamation fa-2x"></i>
+                                        <span class="warn-text2" style="display: block;"></span>
+                                        <input type="text" name="mem3"
+                                               placeholder="Member's Email (used to register to the hackathon)"
+                                               class="form-member-name form-control" id="form-members-3">
+                                        <i id="mem_rem_3" class="fa fa-user-times fa-2x"></i><i
+                                                class="mem-loader3 fa fa-spinner fa-pulse fa-2x"></i><i
+                                                class="mem-check3 fa fa-check fa-2x"></i><i
+                                                class="mem-warn3 fa fa-exclamation fa-2x"></i>
+                                        <span class="warn-text3" style="display: block;"></span>
+                                        <input type="text" name="mem4"
+                                               placeholder="Member's Email (used to register to the hackathon)"
+                                               class="form-member-name form-control" id="form-members-4">
+                                        <i id="mem_rem_4" class="fa fa-user-times fa-2x"></i><i
+                                                class="mem-loader4 fa fa-spinner fa-pulse fa-2x"></i><i
+                                                class="mem-check4 fa fa-check fa-2x"></i><i
+                                                class="mem-warn4 fa fa-exclamation fa-2x"></i>
+                                        <span class="warn-text4" style="display: block;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-team-name">How many university computers do you need?</label>
+                                        <select style="" name="comp" class="form-team-isClosed" id="comp">
+                                            <option value="0">None</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-team-name">How many team members participated in a Hackathon
+                                            before?</label>
+                                        <select style="" name="exp" class="form-team-isClosed" id="exp">
+                                            <option value="0">None</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn">Create Team</button>
+                            <i style="display: none;" class="mem-loader-form fa fa-spinner fa-pulse fa-2x"></i>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<!-- Javascript -->
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/retina-1.1.0.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+<script src="assets/js/jquery.qtip.js"></script>
+<script src="assets/CreativeButtons/js/classie.js"></script>
+<script src="assets/CreativeButtons/js/modernizr.custom.js"></script>
+<script src="assets/js/teamManagement.js"></script>
+<script type="text/javascript" src="assets/js/jquery.modal.js"></script>
+<script type="text/javascript">
+    //create team ajax call
+    $('#form-team-create').on('submit', function (e) {
+        e.preventDefault();
+        $('.mem-loader-form').css('display', 'inline-block');
+        var tags = $('.tag');
+        var JTags = {};
+        $.each(tags, function (key, value) {
+            JTags[key] = $(value).attr('data-tag');
+        });
+        var mems = $('.form-member-name');
+        var Jmems = [];
+        $.each(mems, function (key, value) {
+            if ($(value).val() !== "") {
+                Jmems.push($(value).val());
+            }
+        });
+        var formData = $(this).serializeObject();
+        Jmems.push(formData.admin_email);
+        formData.tags = JTags;
+        formData.members = Jmems;
+        formData.openDate = Date();
+        if (formData.idea === "") {
+            formData.idea = "Not decided yet"
+        }
+        $.ajax({
+            type: "POST",
+            cache: false,
+            contentType: "application/json",
+            url: $(this).attr('action'),
+            data: JSON.stringify(formData),
+            success: function (data) {
+                var msg;
+                if ($('#isClosed').val() === 'false') {
+                    msg = "Your Team has been created successfully. Make sure to check your email for new members requests. Remember to add any new members to your team account "
+                } else {
+                    msg = "Your Team has been created successfully.";
+                }
+                modal({
+                    type: 'success',
+                    title: 'Success',
+                    text: msg,
+                    animate: true,
+                    callback: function () {
+                        window.location.replace("/team-up");
+                    }
+                });
+            },
+            error: function (data) {
+                if (data.responseJSON.status !== undefined) {
+                    modal({
+                        type: 'error',
+                        title: 'Houston, We have a problem',
+                        text: data.responseJSON.status,
+                        animate: true
+                    });
+                    $('.mem-loader-form').css('display', 'none');
+                }
+                else {
+                    modal({
+                        type: 'error',
+                        title: 'Houston, We have a problem',
+                        text: "We have a problem. Please try again or contact <%=suppemail%>",
+                        animate: true
+                    });
+                    $('.mem-loader-form').css('display', 'none');
+                }
+            }
+        });
+    });
+
+
+</script>
+
+<!--[if lt IE 10]>
+<script src="assets/js/placeholder.js"></script>
+<![endif]-->
+
+</body>
+
+</html>

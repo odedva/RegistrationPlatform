@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= eventname %> Registration</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/jquery.qtip.css"/>
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link href="assets/css/jquery.modal.css" type="text/css" rel="stylesheet"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+<body>
+
+<!-- Top menu -->
+<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html"><img class="logo-hack" src="/assets/img/mini-logo.png" alt=""/></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="<%= eventwebsite %>"><strong><%= eventname %></strong></a>
+							<span class="li-social">
+								<a href="<%= eventfacebook %>"><i class="fa fa-facebook"></i></a>
+
+							</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Top content -->
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text">
+                    <h1><strong><%= eventname %></strong> Registration Form</h1>
+
+                    <div class="description">
+                        <p>
+                            Please fill the following form with extra care to all the details, we need them to enhance
+                            your event experience!
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 form-box">
+
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>Sign up now</h3>
+
+                            <p>Fill in the form below</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form id="form-reg" role="form" action="/register" method="post" class="registration-form">
+                            <div class="row">
+                                <div class=" col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-first-name">First name</label>
+                                        <input type="text" name="first_name" placeholder="First name..."
+                                               class="form-first-name form-control" id="form-first-name" required>
+                                    </div>
+                                </div>
+                                <div class=" col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-last-name">Last name</label>
+                                        <input type="text" name="last_name" placeholder="Last name..."
+                                               class="form-last-name form-control" id="form-last-name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-email">Email</label>
+                                        <input type="email" name="email" placeholder="Email..."
+                                               class="form-email form-control" id="form-email" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-phone-number">Phone Number</label>
+                                        <input type="text" name="phone" placeholder="Phone number..."
+                                               class="form-phone-number form-control" id="form-phone-number"
+                                               maxlength="15" pattern="\d*">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 selectContainer">
+                                    <div class="form-group">
+                                        <label for="form-insts">Academic Institute</label>
+                                        <!--<input type="text" placeholder="Pick yours \ Insert if missing" class="form-control" list="insts" name="inst" id="form-insts" required/>-->
+                                        <select id="form-insts" required name="inst" class="form-control select-p"
+                                                required>
+                                            <option value="huji">The Hebrew University of Jerusalem</option>
+                                            <option value="huji-bez">Bezalel & HUJI combined program</option>
+                                            <option value="bez">Bezalel Academy of Arts and Design</option>
+                                            <option value="tau">Tel Aviv University</option>
+                                            <option value="technion">Technion</option>
+                                            <option value="bgu">Ben Gurion University</option>
+                                            <option value="ilan">Bar Ilan University</option>
+                                            <option value="hadas">Hadassah Academic College</option>
+                                            <option value="azrieli">Azrieli College of Engineering Jerusalem</option>
+                                            <option value="talev">Jerusalem College of Technology</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-degs">Course of Study</label>
+                                        <!--<input type="text" placeholder="Pick yours \ Insert if missing" class="form-control" list="degs" name="degree" id="form-degs" required/>-->
+                                        <select id="form-degs" required name="degree" class="form-control select-p"
+                                                required>
+                                            <option value="cs">Computer Science</option>
+                                            <option value="eng">Computer\Software Engineering</option>
+                                            <option value="vis-comm">Visual Communication</option>
+                                            <option value="ind-design">Industrial Design</option>
+                                            <option value="cs-design">Design & Computer Science Program</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-degType">Degree Type</label>
+                                        <!--<input type="text" placeholder="Pick yours \ Insert if missing" class="form-control" list="degs" name="degree" id="form-degs" required/>-->
+                                        <select id="form-degType" required name="degreeType"
+                                                class="form-control select-p" required>
+                                            <option value="first">First Degree</option>
+                                            <option value="master">Master</option>
+                                            <option value="doctor">Doctor</option>
+                                            <option value="professor">Phd</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 selectContainer">
+                                    <div class="form-group">
+                                        <label for="form-yearOfDeg">Year Of Degree</label>
+                                        <!--<input type="text" placeholder="Pick yours \ Insert if missing" class="form-control" list="insts" name="inst" id="form-insts" required/>-->
+                                        <select id="form-yearOfDeg" required name="yearOfDegree"
+                                                class="form-control select-p" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-tshirt">Shirt Size</label>
+                                        <select name="tshirt" id="form-tshirt" class="" required>
+                                            <option value="large">L</option>
+                                            <option value="xsmall">XS</option>
+                                            <option value="small">S</option>
+                                            <option value="medium">M</option>
+                                            <option value="xlarge">XL</option>
+                                            <option value="xxlarge">XXL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-food">Special Diet</label>
+                                        <select name="food" id="form-food" class="" required>
+                                            <option value="all">None</option>
+                                            <option value="vegi">Vegetarian</option>
+                                            <option value="vegan">Vegan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-tshirt">Gender</label>
+                                        <select name="gender" id="form-gender" class="" required>
+                                            <option value="choose">Choose</option>
+                                            <option value="female">Female</option>
+                                            <option value="male">Male</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-pc">Need a PC?</label>
+                                        <select name="needPC" id="form-pc" class="" required>
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-skills">Skills</label>
+
+                                        <div id="tags">
+                                            <input class="form-control" type="text" id="form-skills"
+                                                   placeholder="Add a tag"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-pass">Choose Password <span id="information"
+                                                                                     data-tooltip="Remeber the password you pick!, you will use it in order to sign up for a team before the Hackathon begins"
+                                                                                     class="form-pass-info glyphicon glyphicon-info-sign"></span></label>
+                                        <input type="password" name="password" placeholder="Choose Password..."
+                                               class="form-pass form-control" id="form-pass" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="form-pass-ver">Repeat Password</label>
+                                        <input type="password" name="form_pass_ver" placeholder="Repeat Password..."
+                                               class="form-pass-ver form-control" id="form-pass-ver" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="reg_but" type="submit" class="btn">Sign me up!</button>
+                            <i style="display:none" class="reg-loader fa fa-spinner fa-pulse fa-2x"></i>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Javascript -->
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/retina-1.1.0.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+<script src="assets/js/jquery.qtip.js"></script>
+<script type="text/javascript" src="assets/js/jquery.modal.js"></script>
+<script src="assets/js/reg.js"></script>
+
+<!--[if lt IE 10]>
+<script src="assets/js/placeholder.js"></script>
+<![endif]-->
+
+</body>
+
+</html>

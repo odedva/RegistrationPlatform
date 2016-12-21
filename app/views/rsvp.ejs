@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title><%= eventname %></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/siteAssets/css/main.css"/>
+</head>
+
+<body class="landing">
+<div style="background: linear-gradient(180deg, #009cff, #5bffc2);">
+    <section id="banner">
+        <div class="inner">
+            <% if (name){ %>
+            <p>Hi <%= name %>, <%= msg %></p>
+
+            <p>A confirmation email was sent to <%= email %>.</p>
+
+            <p>See you soon!</p>
+        </div>
+
+        <div class="skyline">
+            <img src="/assets/img/cover smart city with animation-02.svg">
+        </div>
+    </section>
+    <% } %>
+</div>
+</body>
+</html>
