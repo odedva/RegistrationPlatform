@@ -8,7 +8,7 @@ Fast bootstrap:
 
 2) define config/env/development.js with your stuff:
 
-  mongodb connection string (mongo):mongodb://<dbuser>:<dbpassword>@<url>:<port>/<dbname>
+  mongodb connection string (mongo):```mongodb://<dbuser>:<dbpassword>@<url>:<port>/<dbname>```
   
   mail address (only gmail) - for sending confirmation email, password reset email and etc (emailAddr)
   
