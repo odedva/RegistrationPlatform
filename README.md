@@ -4,6 +4,14 @@
 
 ## User &amp; Teams registration website, nodejs, expressjs, ejs, mongodb, passportjs.
 
+### Main features:
+1. User Registration
+2. User login
+3. Team Registration (configurable amount of users per team)
+4. Teams overview (for mix & match)
+5. Parameters control over platform status (Open\Closed)
+6. RSVP process
+
 ### Fast bootstrap:
 
 1.  $ npm install
@@ -38,5 +46,6 @@
 
 ## Good Luck!
 
+### This repository is based on this [hackhands tutorial](https://hackhands.com/how-to-get-started-on-the-mean-stack/) and got deeply improved to fit a Team registration platform
 
 #### Disclaimer - I am not responsible for any issues with this code\platform, in any case.
