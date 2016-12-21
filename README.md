@@ -1,6 +1,6 @@
 # Registration Platform - First created for HUJI Hackathon 2016. www.hujihackathon.co.il (currently down)
 
-## User &amp; Teams registration website, node, mongo, passport
+## User &amp; Teams registration website, nodejs, expressjs, ejs, mongodb, passportjs.
 
 ### Fast bootstrap:
 
@@ -26,7 +26,7 @@
 
 ##### Most of these parameters can be (and better be for security issues) automatically configured via environment variables, see env names in the file.
   
-##### Currently, there are no verifications of these parameters, so making something wrong might cause issues or fatal errors
+##### Currently, there are no verifications of these parameters, so making something wrong might cause issues or fatal errors.
 
 ### RUNNING
 
