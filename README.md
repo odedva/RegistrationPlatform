@@ -1,4 +1,4 @@
-![HUJI Hackathon](https://github.com/gingi007/RegistrationPlatform/blob/master/public/assets/img/mini-logo.png "HUJI Hackathon")
+![HUJI Hackathon](https://github.com/oded-valtzer/RegistrationPlatform/blob/master/public/assets/img/mini-logo.png "HUJI Hackathon")
 
 # Registration Platform - First created for HUJI Hackathon 2016. www.hujihackathon.co.il (currently down)
 
