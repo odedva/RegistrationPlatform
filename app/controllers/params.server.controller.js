@@ -23,12 +23,25 @@ exports.renderParams = function (req, res, next) {
 exports.isRegistrationOpen = function (req, res, next) {
     Param.findOne({name: "users"}, function (err, param) {
         if (err) {
+            console.log(err);
             return next(err);
+            //case param not found, add as open
         } else if (!param) {
-            res.status(403).json({
-                code: 14,
-                status: "we have a general error, code 14. please contact " + config.supportEmailAddr
-            })
+            var p = new Param({"name": "users", isOpen: true});
+            p.save(function (err) {
+                if (err) {
+                    console.log(err);
+                    var message = getErrorMessage(err);
+                    req.flash('error', message);
+                    if (err.code === 11000) {
+                        return res.status(409).json(err.code);
+                    } else {
+                        return res.status(500).json(err.code);
+                    }
+                } else {
+                    next();
+                }
+            });
         } else if (!param.isOpen) {
             res.redirect('/');
         } else {
@@ -47,15 +60,28 @@ exports.isTeamsOpen = function (req, res, next) {
             } else {
                 Param.findOne({name: "teams"}, function (err, param) {
                     if (err) {
+                        console.log(err);
                         return next(err);
                     } else if (!param) {
-                        res.status(403).json({
-                            code: 12,
-                            status: "we have a general error, code 12. please contact " + config.supportEmailAddr
-                        })
+                        var p = new Param({"name": "teams", isOpen: true});
+                        p.save(function (err) {
+                            if (err) {
+                                console.log(err);
+                                var message = getErrorMessage(err);
+                                req.flash('error', message);
+                                if (err.code === 11000) {
+                                    return res.status(409).json(err.code);
+                                } else {
+                                    return res.status(500).json(err.code);
+                                }
+                            } else {
+                                next();
+                            }
+                        });
                     } else if (!param.isOpen) {
                         res.status(403).send("<h1>Team Platform is currently closed</h1>");
                     } else {
+                        console.log("HERE")
                         next();
                     }
                 })
@@ -66,10 +92,21 @@ exports.isTeamsOpen = function (req, res, next) {
             if (err) {
                 return next(err);
             } else if (!param) {
-                res.status(403).json({
-                    code: 12,
-                    status: "we have a general error, code 12. please contact " + config.supportEmailAddr
-                })
+                var p = new Param({"name": "teams", isOpen: true});
+                p.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                        var message = getErrorMessage(err);
+                        req.flash('error', message);
+                        if (err.code === 11000) {
+                            return res.status(409).json(err.code);
+                        } else {
+                            return res.status(500).json(err.code);
+                        }
+                    } else {
+                        next();
+                    }
+                });
             } else if (!param.isOpen) {
                 res.redirect('/');
             } else {

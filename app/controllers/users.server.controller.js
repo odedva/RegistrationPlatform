@@ -178,7 +178,7 @@ exports.renderParams = function (req, res, next) {
 };
 
 exports.renderReset = function (req, res, next) {
-    if (req.user && req.user.email === "oded.valtzer@gmail.com") {
+    if (req.user && req.user.isAdmin) {
         res.render('reset', {
             title: 'reset password',
             user: {"email": req.user.email, "isAdmin": true},
@@ -501,24 +501,6 @@ exports.logedIn = function (req, res, next) {
     } else {
         res.redirect('/login');
     }
-};
-
-exports.isRegistrationOpen = function (req, res, next) {
-    Param.findOne({name: "users"}, function (err, param) {
-        if (err) {
-            return next(err);
-        } else if (!param) {
-            res.status(403).json({
-                code: 14,
-                status: "we have a general error, code 14. please contact " + config.supportEmailAddr
-            })
-        } else if (!param.isOpen) {
-            res.redirect('/');
-            //res.status(403).send("<h1>Participants Registration is now closed.</h1>");
-        } else {
-            next();
-        }
-    })
 };
 
 
