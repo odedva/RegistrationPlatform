@@ -46,6 +46,18 @@
 
 ## Good Luck!
 
+### API and general Information
+1. Once the platform is up, a new user should be registered via /register. In order to make this user an admin, the field of `isAdmin` should be changed to `true` in the users collection in mongodb. 
+
+ This type of user have access to all APIs even if the registartion is closed and etc. Moreover, this user can view some   administration pages and make updates to users\parameters.
+
+2. Models: Users, Teams, Params. 
+
+ 1. Users - general fields, `email` (unique email), `isAdmin` (whether this user has admin permissions), `isMember` (of a team), `team` (id of the team that this user is part of).
+ 2. Teams - general fields, `admin_email` (team admin email), `members` (team members email array), `isClosed` (whether this team is looking for members).
+ 3. Params - `name` (parmeter name), `isOpen` (boolean value fo uses like user registraion is open. team registration is closed and etc.)
+
+
 ### This repository is based on this [hackhands tutorial](https://hackhands.com/how-to-get-started-on-the-mean-stack/) and got deeply improved to fit a Team registration platform
 
 #### Disclaimer - I am not responsible for any issues with this code\platform, in any case.
