@@ -1,25 +1,25 @@
 {
-  "name": "MEAN_MVC_3rdTutorial",
+  "name": "Registration Platform",
   "version": "1.0.0",
-  "description": "Code acompanying the [third blog post](not yet published)",
+  "description": "User and Teams Registration Platform - First created for HUJI Hackathon 2016",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Hitman666/MEAN_MVC_3rdTutorial.git"
+    "url": "https://github.com/odedva/RegistrationPlatform.git"
   },
   "keywords": [
     "MEAN",
     "MVC"
   ],
-  "author": "Nikola Brežnjak <nikola.breznjak@gmail.com> (http://www.nikola-breznjak.com/)",
+  "author": "Oded Valtzer <oded.valtzer@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Hitman666/MEAN_MVC_3rdTutorial/issues"
+    "url": "https://github.com/odedva/RegistrationPlatform/issues"
   },
-  "homepage": "https://github.com/Hitman666/MEAN_MVC_3rdTutorial",
+  "homepage": "https://github.com/odedva/RegistrationPlatform",
   "dependencies": {
     "async": "^1.5.2",
     "body-parser": "^1.10.1",
