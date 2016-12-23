@@ -1,8 +1,10 @@
 ![HUJI Hackathon](https://github.com/odedva/RegistrationPlatform/blob/master/public/assets/img/mini-logo.png "HUJI Hackathon")
 
-# Registration Platform - First created for HUJI Hackathon 2016. www.hujihackathon.co.il (currently down)
+# Registration Platform
 
-## User &amp; Teams registration website, nodejs, expressjs, ejs, mongodb, passportjs.
+# First created for HUJI Hackathon 2016
+
+## Users &amp; Teams registration platform, written in nodejs, expressjs, ejs, mongodb, passportjs
 
 ### Main features:
 1. User Registration
