@@ -55,8 +55,13 @@
 
  1. Users - general fields, `email` (unique email), `isAdmin` (whether this user has admin permissions), `isMember` (of a team), `team` (id of the team that this user is part of).
  2. Teams - general fields, `admin_email` (team admin email), `members` (team members email array), `isClosed` (whether this team is looking for members).
- 3. Params - `name` (parmeter name), `isOpen` (boolean value fo uses like user registraion is open. team registration is closed and etc.)
-
+ 3. Params - `name` (parmeter name), `isOpen` (boolean value for uses like user registraion is open. team registration is closed and etc.)
+ 
+3. Administration pages (only available for admin users):
+ 1. /printusers - this page contains a full list of registered members with most of their information., boolean fields are editable.
+ 2. /params - this page contains a list of the boolean parmateres which are editable. the default parameters are:
+    *  `users` - This parameter contorl the status of new *User* registration. if it's false, user registration is disabled
+    *  `team` - This parameter contorl the status of *Team* registration and platform. if it's false, the whole team platform is closed.
 
 ### This repository is based on this [hackhands tutorial](https://hackhands.com/how-to-get-started-on-the-mean-stack/) and got deeply improved to fit a Team registration platform
 
