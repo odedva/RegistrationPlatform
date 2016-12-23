@@ -13,6 +13,7 @@
 4. Teams overview (for mix & match)
 5. Parameters control over platform status (Open\Closed)
 6. RSVP process
+7. It's Responsive :)
 
 ### Platform screen shots can be found below the instructions (so you'll see how easy it is to get up and running!)
 
