@@ -1,5 +1,5 @@
 {
-  "name": "Registration Platform",
+  "name": "RegistrationPlatform",
   "version": "1.0.0",
   "description": "User and Teams Registration Platform - First created for HUJI Hackathon 2016",
   "main": "server.js",
