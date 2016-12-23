@@ -25,6 +25,8 @@
    * mail password (`config.emailPass`)
   
    * support mail address - for presenting to users for contact the event organizers (`config.supportEmailAddr`)
+
+   * admin mail address - registering a user with this emaill address will permit this user to see administration pages (`config.adminEmail`)
   
    * event name (`config.eventname`)
   
@@ -47,19 +49,17 @@
 ## Good Luck!
 
 ### API and general Information
-1. Once the platform is up, a new user should be registered via /register. In order to make this user an admin, the field of `isAdmin` should be changed to `true` in the users collection in mongodb. 
-
- This type of user have access to all APIs even if the registartion is closed and etc. Moreover, this user can view some   administration pages and make updates to users\parameters.
+1. In order to be an admin, register a user with an email which is set as environment variable ADMIN_EMAIL. this will automatically grant him admin permission to acces admin pages
 
 2. Models: Users, Teams, Params. 
 
- 1. Users - general fields, `email` (unique email), `isAdmin` (whether this user has admin permissions), `isMember` (of a team), `team` (id of the team that this user is part of).
+ 1. Users - general fields, `email` (unique email), `isMember` (of a team), `team` (id of the team that this user is part of).
  2. Teams - general fields, `admin_email` (team admin email), `members` (team members email array), `isClosed` (whether this team is looking for members).
  3. Params - `name` (parmeter name), `isOpen` (boolean value for uses like user registraion is open. team registration is closed and etc.)
  
-3. Administration pages (only available for admin users):
+3. Administration pages (only available for admin user):
  1. /printusers - this page contains a full list of registered members with most of their information., boolean fields are editable.
- 2. /params - this page contains a list of the boolean parmateres which are editable. the default parameters are:
+ 2. /params - this page contains a list of the boolean parameters which are editable. the default parameters are:
     *  `users` - This parameter contorl the status of new *User* registration. if it's false, user registration is disabled
     *  `team` - This parameter contorl the status of *Team* registration and platform. if it's false, the whole team platform is closed.
 
