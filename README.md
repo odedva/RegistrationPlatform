@@ -58,10 +58,12 @@
 ![Find A Team](https://github.com/odedva/RegistrationPlatform/blob/master/public/assets/img/screenshots/mingle.png "Find A Team Page")
 
 
-### API and general Information
-1. In order to be an admin, register a user with an email which is set as environment variable ADMIN_EMAIL. this will automatically grant him admin permission to acces admin pages
+### General and API Information
+1. First things first: This platform was developed during my academic studies, so I didnt had the time to invest in a nice design (UI & code) and hacks do appear - in order to generalize stuff, and because some of this code was written to fast-handle some bugs and issues we had on the way.
 
-2. Models: Users, Teams, Params. 
+2. In order to be an admin, register a user with an email which is set as environment variable ADMIN_EMAIL. this will automatically grant him admin permission to acces admin pages
+
+3. Models: Users, Teams, Params. 
 
  1. Users - general fields, `email` (unique email), `isMember` (of a team), `team` (id of the team that this user is part of).
  2. Teams - general fields, `admin_email` (team admin email), `members` (team members email array), `isClosed` (whether this team is looking for members).
