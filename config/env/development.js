@@ -8,7 +8,7 @@ var adminEmail = process.env.ADMIN_EMAIL || '';
 var eventname = 'HUJI Hackathon';
 var eventwebsite = 'http://www.hujihackathon.co.il';
 var eventfacebook = 'https://www.facebook.com/HujiHack';
-var maxNumOfUsersInTeam = 6;
+var maxNumOfUsersInTeam = 6; // maximum supported currently is 6, can be only enforce 6 or lower.,
 module.exports = {
     port: port,
     host: host,
