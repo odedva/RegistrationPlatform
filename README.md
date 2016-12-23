@@ -12,6 +12,8 @@
 5. Parameters control over platform status (Open\Closed)
 6. RSVP process
 
+### Platform screen shots can be found below the instructions (so you'll see how easy it is to get up and running!)
+
 ### Fast bootstrap:
 
 1.  $ npm install
@@ -47,6 +49,14 @@
 2. you are good to go!
 
 ## Good Luck!
+
+### Screen Shots (More information about the platform can be found below)
+![Login](https://github.com/odedva/RegistrationPlatform/blob/master/public/assets/img/screenshots/login.png "Login Page")
+![Register](https://github.com/odedva/RegistrationPlatform/blob/master/public/assets/img/screenshots/register.png "Register Page")
+![Main Page](https://github.com/odedva/RegistrationPlatform/blob/master/public/assets/img/screenshots/main.png "Main Page")
+![Create Team Page](https://github.com/odedva/RegistrationPlatform/blob/master/public/assets/img/screenshots/create.png "Create Team Page")
+![Find A Team](https://github.com/odedva/RegistrationPlatform/blob/master/public/assets/img/screenshots/mingle.png "Find A Team Page")
+
 
 ### API and general Information
 1. In order to be an admin, register a user with an email which is set as environment variable ADMIN_EMAIL. this will automatically grant him admin permission to acces admin pages
