@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     crypto = require('crypto'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    config = require('../../config/config');
 
 var UserSchema = new Schema({
     first_name: String,
@@ -25,7 +26,6 @@ var UserSchema = new Schema({
     regDate: String,
     accepted: {type: Boolean, default: false},
     isMember: {type: Boolean, default: false},
-    isAdmin: {type: Boolean, default: false},
     team: {type: String, default: ''},
     resetPass: String,
     password: String,
@@ -87,5 +87,11 @@ UserSchema.statics.findUniqueUsername = function (email, suffix, callback) {
     );
 };
 
+UserSchema.statics.isAdmin = function (user) {
+    if (user && user.email.toLowerCase() === config.adminEmail.toLowerCase()) {
+        return true;
+    }
+    return false;
+};
 
 mongoose.model('User', UserSchema);

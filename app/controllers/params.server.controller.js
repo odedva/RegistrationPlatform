@@ -55,7 +55,7 @@ exports.isTeamsOpen = function (req, res, next) {
         User.findById(req.user._id, function (err, user) {
             if (err) {
                 return next(err);
-            } else if (user.isAdmin) {
+            } else if (User.isAdmin(user)) {
                 next();
             } else {
                 Param.findOne({name: "teams"}, function (err, param) {

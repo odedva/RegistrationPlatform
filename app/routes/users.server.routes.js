@@ -35,7 +35,7 @@ module.exports = function (app) {
 
     app.route('/rsvp/:userIdToUpdate').get(users.userAgree);
 
-    app.route('/reset').get(users.permissionCheck, users.renderReset)
+    app.route('/reset').get(users.permissionCheck, users.renderReset);
 
     app.get('/logout', users.logout);
 

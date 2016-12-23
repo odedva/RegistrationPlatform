@@ -119,6 +119,16 @@ exports.create = function (req, res, next) {
     var team = new Team(req.body);
     team.save(function (err, savedTeam) {
         if (err) {
+            //at team has this email admin already. very rare error if user deleted from mongo withoug deleting his team
+            if (err.code === 11000) {
+                res.status(403).json({
+                    code: 12,
+                    status: "Sorry for that, we have an internal error. it's this funny error. please contact " + config.supportEmailAddr
+                })
+
+            }
+            console.log(err)
+
             return next(err);
         }
         else {

@@ -4,6 +4,7 @@ var mongo = process.env.MONGO_URL || '';
 var emailAddr = process.env.EMAIL_ADDR || '';
 var emailPass = process.env.EMAIL_PASS || '';
 var supportEmailAddr = process.env.SUPP_EMAIL_ADDR || '';
+var adminEmail = process.env.ADMIN_EMAIL || '';
 var eventname = 'HUJI Hackathon';
 var eventwebsite = 'http://www.hujihackathon.co.il';
 var eventfacebook = 'https://www.facebook.com/HujiHack';
@@ -18,5 +19,6 @@ module.exports = {
     eventname: eventname,
     eventwebsite: eventwebsite,
     eventfacebook: eventfacebook,
-    maxNumOfUsersInTeam: maxNumOfUsersInTeam
+    maxNumOfUsersInTeam: maxNumOfUsersInTeam,
+    adminEmail: adminEmail
 };

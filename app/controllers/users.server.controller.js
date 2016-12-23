@@ -2,7 +2,7 @@ var User = require('mongoose').model('User'),
     Param = require('mongoose').model('Param'),
     passport = require('passport'),
     nodemailer = require('nodemailer'),
-    config = require('../../config/env/development.js');
+    config = require('../../config/config');
 
 
 //Init the SMTP transport
@@ -178,15 +178,16 @@ exports.renderParams = function (req, res, next) {
 };
 
 exports.renderReset = function (req, res, next) {
-    if (req.user && req.user.isAdmin) {
+    if (req.user && User.isAdmin(req.user)) {
         res.render('reset', {
             title: 'reset password',
-            user: {"email": req.user.email, "isAdmin": true},
+            user: {"email": req.user.email},
             messages: req.flash('error'),
             suppemail: config.supportEmailAddr,
             eventname: config.eventname,
             eventwebsite: config.eventwebsite,
-            eventfacebook: config.eventfacebook
+            eventfacebook: config.eventfacebook,
+            adminemail: config.adminEmail
         });
     }
     else {
@@ -374,9 +375,6 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
 
 
 exports.create = function (req, res, next) {
-    if (req.body.isAdmin) {
-        req.body.isAdmin = false;
-    }
     var user = new User(req.body);
     user.save(function (err) {
         if (err) {
@@ -389,7 +387,7 @@ exports.create = function (req, res, next) {
 };
 
 exports.list = function (req, res, next) {
-    User.find({}, '-password -isAdmin', function (err, users) {
+    User.find({}, '-password', function (err, users) {
         if (err) {
             return next(err);
         }
@@ -447,7 +445,7 @@ exports.permissionCheck = function (req, res, next) {
         User.findById(req.user._id, function (err, user) {
             if (err) {
                 return next(err);
-            } else if (user.isAdmin) {
+            } else if (User.isAdmin(user)) {
                 next();
             } else {
                 res.status(401).redirect('/login');
@@ -459,10 +457,8 @@ exports.permissionCheck = function (req, res, next) {
 
 };
 
+
 exports.update = function (req, res, next) {
-    if (req.body.isAdmin) {
-        req.body.isAdmin = false;
-    }
     User.findByIdAndUpdate(req.userDetails._id, req.body, function (err, user) {
         if (err) {
             return next(err);
@@ -548,5 +544,6 @@ exports.userAgree = function (req, res, next) {
         res.status(400).send("<h4>no user token was sent, please try again or contact " + config.supportEmailAddr + "</h4>")
     }
 };
+
 
 
