@@ -23,8 +23,6 @@ module.exports = function (app) {
         post(params.isRegistrationOpen, users.forgot);
 
     app.route('/resetme/:resetId').get(params.isRegistrationOpen, users.renderResetme);
-    app.route('/params').get(users.permissionCheck, users.renderParams);
-    app.route('/params/:paramId').put(users.permissionCheck, users.updateParam);
     app.route('/printUsers').get(users.permissionCheck, users.renderPrintUsers);
 
     app.route('/login')

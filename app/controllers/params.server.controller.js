@@ -81,7 +81,6 @@ exports.isTeamsOpen = function (req, res, next) {
                     } else if (!param.isOpen) {
                         res.status(403).send("<h1>Team Platform is currently closed</h1>");
                     } else {
-                        console.log("HERE")
                         next();
                     }
                 })
