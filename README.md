@@ -9,7 +9,7 @@
 ### Main features:
 1. User Registration
 2. User login
-3. Team Registration (configurable maximum amount of users per team, currently support for 1-6)
+3. Team Registration (configurable maximum amount of users per team)
 4. Teams overview (for mix & match)
 5. Parameters control over platform status (Open\Closed)
 6. RSVP process
@@ -39,7 +39,7 @@
   
    * Event facebook link (`config.eventfacebook`)
   
-   * Maximum amount of users in each team, the platform support currently up to a limit of 6, more than 6 will not function well (`config.maxNumOfUsersInTeam`)
+   * Maximum amount of users in each team - any number is now supported! (`config.maxNumOfUsersInTeam`)
 
 ##### Most of these parameters can be (and better be for security issues) automatically configured via environment variables, see env names in the file.
   
