@@ -197,7 +197,7 @@
                                                 class="mem-warn<%= i %> fa fa-exclamation fa-2x"></i>
                                         <span class="warn-text<%= i %>" style="display: block;"></span>
                                         <% } %>
-                                        <% for(var i = team.members.length; i < 5; i++) { %>
+                                        <% for(var i = team.members.length; i < maxusers; i++) { %>
                                         <input style="display: <% i == 0 ? "inline-block" : "none"; %>;" type="text"
                                                name="mem<%= i %>" value="<%= team.members[i] %>"
                                                placeholder="Member's Email (used to register to the hackathon)"
@@ -216,29 +216,12 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="form-team-name">How many university computers do you need?</label>
+                                        <script>var comp = parseInt(<%= team.comp %>);</script>
                                         <select style="" name="comp" class="form-team-isClosed" id="comp">
-                                            <option <% if (team.comp === "0"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="0">None
-                                            </option>
-                                            <option <% if (team.comp === "1"){ %>selected="selected" <% } %>value="1">
-                                                1
-                                            </option>
-                                            <option <% if (team.comp === "2"){ %>selected="selected" <% } %>value="2">
-                                                2
-                                            </option>
-                                            <option <% if (team.comp === "3"){ %>selected="selected" <% } %>value="3">
-                                                3
-                                            </option>
-                                            <option <% if (team.comp === "4"){ %>selected="selected" <% } %>value="4">
-                                                4
-                                            </option>
-                                            <option <% if (team.comp === "5"){ %>selected="selected" <% } %>value="5">
-                                                5
-                                            </option>
-                                            <option <% if (team.comp === "6"){ %>selected="selected" <% } %>value="6">
-                                                6
-                                            </option>
+                                            <option value="0">None</option>
+                                            <% for (var j = 1; j <= maxusers; j++){ %>
+                                            <option value="<%= j %>"><%= j %></option>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>
@@ -246,35 +229,12 @@
                                     <div class="form-group">
                                         <label for="form-team-name">How many team members participated in a Hackathon
                                             before?</label>
+                                        <script>var exp = parseInt(<%= team.exp %>);</script>
                                         <select style="" name="exp" class="form-team-isClosed" id="exp">
-                                            <option <% if (team.exp === "0"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="0">None
-                                            </option>
-                                            <option <% if (team.exp === "1"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="1">1
-                                            </option>
-                                            <option <% if (team.exp === "2"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="2">2
-                                            </option>
-                                            <option <% if (team.exp === "3"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="3">3
-                                            </option>
-                                            <option <% if (team.exp === "4"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="4">4
-                                            </option>
-                                            <option <% if (team.exp === "5"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="5">5
-                                            </option>
-                                            <option <% if (team.exp === "6"){ %>selected="selected"
-                                                    <% } %>
-                                                    value="6">6
-                                            </option>
+                                            <option value="0">None</option>
+                                            <% for (var j = 1; j <= maxusers; j++){ %>
+                                            <option value="<%= j %>"><%= j %></option>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>
@@ -313,6 +273,9 @@
 <script type="text/javascript" src="assets/js/jquery.modal.js"></script>
 <script src="assets/js/teamManagement.js"></script>
 
+<script>$('#comp option:eq(' + comp + ')').attr('selected', 'selected')
+    $('#exp option:eq(' + exp + ')').attr('selected', 'selected')
+</script>
 
 <!--[if lt IE 10]>
 <script src="assets/js/placeholder.js"></script>

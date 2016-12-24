@@ -179,46 +179,57 @@
                                                                           aria-describedby="qtip-128"></span> Members <i
                                                     id="add_mem" class="fa fa-user-plus fa-2x"><label
                                                         class="add-mem-label">Add members</label></i></label>
-                                        <input type="text" name="mem0"
+                                        <% for (var i = 0;  i < maxusers - 1; i++) { %>
+                                        <input type="text" name="mem<%= i %>"
                                                placeholder="Member's Email (used to register to the hackathon)"
-                                               class="form-member-name form-control" id="form-members-0">
-                                        <i id="mem_rem_0" class="fa fa-user-times fa-2x"></i><i
-                                                class="mem-loader0 fa fa-spinner fa-pulse fa-2x"></i><i
-                                                class="mem-check0 fa fa-check fa-2x"></i><i
-                                                class="mem-warn0 fa fa-exclamation fa-2x"></i>
-                                        <span class="warn-text0" style="display: block;"></span>
-                                        <input type="text" name="mem1"
-                                               placeholder="Member's Email (used to register to the hackathon)"
-                                               class="form-member-name form-control" id="form-members-1">
-                                        <i id="mem_rem_1" class="fa fa-user-times fa-2x"></i><i
-                                                class="mem-loader1 fa fa-spinner fa-pulse fa-2x"></i><i
-                                                class="mem-check1 fa fa-check fa-2x"></i><i
-                                                class="mem-warn1 fa fa-exclamation fa-2x"></i>
-                                        <span class="warn-text1" style="display: block;"></span>
-                                        <input type="text" name="mem2"
-                                               placeholder="Member's Email (used to register to the hackathon)"
-                                               class="form-member-name form-control" id="form-members-2">
-                                        <i id="mem_rem_2" class="fa fa-user-times fa-2x"></i><i
-                                                class="mem-loader2 fa fa-spinner fa-pulse fa-2x"></i><i
-                                                class="mem-check2 fa fa-check fa-2x"></i><i
-                                                class="mem-warn2 fa fa-exclamation fa-2x"></i>
-                                        <span class="warn-text2" style="display: block;"></span>
-                                        <input type="text" name="mem3"
-                                               placeholder="Member's Email (used to register to the hackathon)"
-                                               class="form-member-name form-control" id="form-members-3">
-                                        <i id="mem_rem_3" class="fa fa-user-times fa-2x"></i><i
-                                                class="mem-loader3 fa fa-spinner fa-pulse fa-2x"></i><i
-                                                class="mem-check3 fa fa-check fa-2x"></i><i
-                                                class="mem-warn3 fa fa-exclamation fa-2x"></i>
-                                        <span class="warn-text3" style="display: block;"></span>
-                                        <input type="text" name="mem4"
-                                               placeholder="Member's Email (used to register to the hackathon)"
-                                               class="form-member-name form-control" id="form-members-4">
-                                        <i id="mem_rem_4" class="fa fa-user-times fa-2x"></i><i
-                                                class="mem-loader4 fa fa-spinner fa-pulse fa-2x"></i><i
-                                                class="mem-check4 fa fa-check fa-2x"></i><i
-                                                class="mem-warn4 fa fa-exclamation fa-2x"></i>
-                                        <span class="warn-text4" style="display: block;"></span>
+                                               class="form-member-name form-control" id="form-members-<%= i %>">
+                                        <i id="mem_rem_<%= i %>" class="fa fa-user-times fa-2x"></i><i
+                                                class="mem-loader<%= i %> fa fa-spinner fa-pulse fa-2x"></i><i
+                                                class="mem-check<%= i %> fa fa-check fa-2x"></i><i
+                                                class="mem-warn<%= i %> fa fa-exclamation fa-2x"></i>
+                                        <span class="warn-text<%= i %>" style="display: block;"></span>
+
+                                        <% } %>
+                                        <!--<input type="text" name="mem0"-->
+                                        <!--placeholder="Member's Email (used to register to the hackathon)"-->
+                                        <!--class="form-member-name form-control" id="form-members-0">-->
+                                        <!--<i id="mem_rem_0" class="fa fa-user-times fa-2x"></i><i-->
+                                        <!--class="mem-loader0 fa fa-spinner fa-pulse fa-2x"></i><i-->
+                                        <!--class="mem-check0 fa fa-check fa-2x"></i><i-->
+                                        <!--class="mem-warn0 fa fa-exclamation fa-2x"></i>-->
+                                        <!--<span class="warn-text0" style="display: block;"></span>-->
+                                        <!--<input type="text" name="mem1"-->
+                                        <!--placeholder="Member's Email (used to register to the hackathon)"-->
+                                        <!--class="form-member-name form-control" id="form-members-1">-->
+                                        <!--<i id="mem_rem_1" class="fa fa-user-times fa-2x"></i><i-->
+                                        <!--class="mem-loader1 fa fa-spinner fa-pulse fa-2x"></i><i-->
+                                        <!--class="mem-check1 fa fa-check fa-2x"></i><i-->
+                                        <!--class="mem-warn1 fa fa-exclamation fa-2x"></i>-->
+                                        <!--<span class="warn-text1" style="display: block;"></span>-->
+                                        <!--<input type="text" name="mem2"-->
+                                        <!--placeholder="Member's Email (used to register to the hackathon)"-->
+                                        <!--class="form-member-name form-control" id="form-members-2">-->
+                                        <!--<i id="mem_rem_2" class="fa fa-user-times fa-2x"></i><i-->
+                                        <!--class="mem-loader2 fa fa-spinner fa-pulse fa-2x"></i><i-->
+                                        <!--class="mem-check2 fa fa-check fa-2x"></i><i-->
+                                        <!--class="mem-warn2 fa fa-exclamation fa-2x"></i>-->
+                                        <!--<span class="warn-text2" style="display: block;"></span>-->
+                                        <!--<input type="text" name="mem3"-->
+                                        <!--placeholder="Member's Email (used to register to the hackathon)"-->
+                                        <!--class="form-member-name form-control" id="form-members-3">-->
+                                        <!--<i id="mem_rem_3" class="fa fa-user-times fa-2x"></i><i-->
+                                        <!--class="mem-loader3 fa fa-spinner fa-pulse fa-2x"></i><i-->
+                                        <!--class="mem-check3 fa fa-check fa-2x"></i><i-->
+                                        <!--class="mem-warn3 fa fa-exclamation fa-2x"></i>-->
+                                        <!--<span class="warn-text3" style="display: block;"></span>-->
+                                        <!--<input type="text" name="mem4"-->
+                                        <!--placeholder="Member's Email (used to register to the hackathon)"-->
+                                        <!--class="form-member-name form-control" id="form-members-4">-->
+                                        <!--<i id="mem_rem_4" class="fa fa-user-times fa-2x"></i><i-->
+                                        <!--class="mem-loader4 fa fa-spinner fa-pulse fa-2x"></i><i-->
+                                        <!--class="mem-check4 fa fa-check fa-2x"></i><i-->
+                                        <!--class="mem-warn4 fa fa-exclamation fa-2x"></i>-->
+                                        <!--<span class="warn-text4" style="display: block;"></span>-->
                                     </div>
                                 </div>
                             </div>
@@ -228,12 +239,9 @@
                                         <label for="form-team-name">How many university computers do you need?</label>
                                         <select style="" name="comp" class="form-team-isClosed" id="comp">
                                             <option value="0">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                            <% for (var j = 1; j <= maxusers; j++){ %>
+                                            <option value="<%= j %>"><%= j %></option>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>
@@ -243,12 +251,9 @@
                                             before?</label>
                                         <select style="" name="exp" class="form-team-isClosed" id="exp">
                                             <option value="0">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                            <% for (var j = 1; j <= maxusers; j++){ %>
+                                            <option value="<%= j %>"><%= j %></option>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>

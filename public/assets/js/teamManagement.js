@@ -7,13 +7,18 @@ $(document).ready(function () {
             return false;
         }
     });
-    currentMember = [true, false, false, false, false];
+    var currentMember = [];
+    currentMember[0] = true;
+    for (var i = 1; i < maxMembers; i++) {
+        currentMember.push(false);
+    }
     if ($('#members_list').data('amount') !== undefined) {
         for (var i = 0; i < $('#members_list').data('amount'); i++) {
             currentMember[i] = true;
         }
     }
     $('#add_mem').on('click', function () {
+
         for (var i = 0; i < maxMembers; i++) {
             if (!currentMember[i]) {
                 $('#form-members-' + i).css('display', 'inline-block');
@@ -89,7 +94,6 @@ $(document).ready(function () {
         if (window.confirm("Are you sure?")) {
             var teamId = $('#deleteTeamClk').data('teamid');
             var userEmail = $('#deleteTeamClk').data('useremail');
-            console.log({'admin_email': userEmail});
             $.ajax({
                 data: {'admin_email': userEmail}, type: 'DELETE', url: "/teams/" + teamId, success: function (result) {
                     modal({
@@ -105,7 +109,6 @@ $(document).ready(function () {
                     $('#deleteTeamClk').attr('disabled', false);
                     $('#submit_update').attr('disabled', false);
                     $('.mem-loader-form').css('display', 'none');
-                    console.log(e);
                 }
             });
         } else {
@@ -140,7 +143,6 @@ $(document).ready(function () {
         });
         var formData = form.serializeObject();
         Jmems.push(formData.admin_email);
-        console.log(formData.isClosed);
         if (formData.isClosed == "true") {
             formData.isClosed = true;
         } else {
@@ -169,7 +171,6 @@ $(document).ready(function () {
                 });
             },
             error: function (data) {
-                console.log("in error")
                 if (data.responseJSON.status !== undefined) {
                     modal({
                         type: 'error',
@@ -192,7 +193,6 @@ $(document).ready(function () {
                     $('#deleteTeamClk').attr('disabled', false);
                     $('.mem-loader-form').css('display', 'none');
                 }
-                console.log(data);
             }
         });
     });
